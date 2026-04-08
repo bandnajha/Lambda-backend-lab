@@ -1,0 +1,28 @@
+name: Deploy to Dev Lambda
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: npm install
+      - run: zip -r function.zip .
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::543558877267:role/Lambdaaccessthroughgit
+          aws-region: ap-south-1
+
+      - run: |
+          aws lambda update-function-code \
+          --function-name my-app-dev \
+          --zip-file fileb://function.zip
