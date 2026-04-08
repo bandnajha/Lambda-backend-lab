@@ -1,0 +1,11 @@
+{
+  "name": "lambda-backend-lab",
+  "version": "1.0.0",
+  "description": "Lambda backend CI/CD lab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "author": "",
+  "license": "ISC"
+}
